@@ -1,11 +1,19 @@
 <% @images.each do |image| %>
 
     <% if image.position_x.nil? or image.position_y.nil? %>
-        <%= image_tag(image.file_name, :alt => image.alt, :title => image.title, :id => image.id) %>
+        <%= image_tag(image.file_name, :alt => image.alt, :title => image.title, :id => image.id, :class => "draggable") %>
     <% else %>
         <%= image_tag(image.file_name, :alt => image.alt,
                                        :title => image.title,
                                        :id => image.id,
-                                       :style => "position:absolute; top:#{image.position_y}px; left:#{image.position_x}px;") %>
+                                       :style => "position:absolute; top:#{image.position_y}px; left:#{image.position_x}px;",
+                                       :class => "draggable") %>
     <% end %>
 <% end %>
+
+<ul id="sortable"  class="f-cb">
+	<p><h2>I'm persistent sortalbe!</h2></p>
+	<% @images.each do |image| %>
+		<li value="<%= image.id%>"><%= image_tag(image.file_name) %></li>
+	<% end -%>
+</ul>

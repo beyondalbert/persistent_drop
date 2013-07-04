@@ -80,4 +80,15 @@ class ImagesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def resort_images
+    params[:positions].each_pair do |key, value|
+      image = Image.find(key)
+      image.update_attribute(:sortable_position, value)
+    end
+
+    respond_to do |format|
+      format.json { head :no_content }
+    end
+  end
 end

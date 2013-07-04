@@ -13,12 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.draggable
+//= require jquery.ui.sortable
 //= require_tree .
 
 
 $(function() {
     // Append the draggable widget to all the img objects
-    $("img").draggable({
+    $(".draggable").draggable({
         // Capture the "stop drag" event
         stop: function(event, ui) {
 
@@ -44,4 +45,26 @@ $(function() {
             })
         }
     });
+
+    $("#sortable").sortable({
+        update: function(event, ui) {
+            var positions = {}
+            var li_num = $("#sortable li").length;
+            for (i=0;i<li_num;i++) {
+                var tmp_li = $("#sortable li:eq(" + i + ")");
+                positions[tmp_li.val()] = i;
+            };
+
+            var data_pos = {"positions": positions};
+
+            $.ajax({
+                type: "PUT",
+                url: "/images/resort_images",
+                data: JSON.stringify(data_pos),
+                contentType: 'application/json',
+                dataType: 'json'
+            });
+        }
+    });
+    $("#sortable").disableSelection();
 });

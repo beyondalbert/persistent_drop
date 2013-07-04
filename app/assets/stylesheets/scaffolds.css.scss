@@ -67,3 +67,18 @@ div {
     list-style: square;
   }
 }
+
+/* clear float */
+.f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+.f-cb,.f-cbli li{zoom:1;}
+
+#sortable {
+  border: 2px solid;
+  width: 400px;
+  float:right;
+  li {
+    float: left;
+    width: 200px;
+    height: 200px;
+  }
+}
