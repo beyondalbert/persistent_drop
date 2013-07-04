@@ -1,4 +1,4 @@
-= jQuery UI draggable with Ajax.
+= jQuery UI draggable and sortable with Ajax.
 
 Simple example about how to work with jQuery UI draggable and ajax in the context of a Rails application.
 
